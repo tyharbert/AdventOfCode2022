@@ -27,17 +27,17 @@
 
         public void RunChallengeTwo()
         {
+            int groupLineCount = 3;
             int runningTotal = 0;
 
             var lines = File.ReadLines(@".\Day3\challenge-input.txt").ToList();
-            int pageLines = 3;
 
-            var pageCount = lines.Count() / pageLines;
-            var pageNumber =  0;
+            var groupCount = lines.Count / groupLineCount;
+            var groupNumber =  0;
 
-            while (pageNumber < pageCount)
+            while (groupNumber < groupCount)
             {
-                var groupLines = lines.Skip(pageNumber * pageLines).Take(pageLines);
+                var groupLines = lines.Skip(groupNumber * groupLineCount).Take(groupLineCount);
 
                 var charVal = InterativeIntersect(groupLines).FirstOrDefault();
 
@@ -45,13 +45,13 @@
 
                 runningTotal += priority;
 
-                pageNumber++;
+                groupNumber++;
             }
 
             Console.WriteLine($"The sum of the priorites is {runningTotal}.");
         }
 
-        private IEnumerable<char> InterativeIntersect(IEnumerable<string> values)
+        private static IEnumerable<char> InterativeIntersect(IEnumerable<string> values)
         {
             var enumerator = values.GetEnumerator();
             enumerator.MoveNext();

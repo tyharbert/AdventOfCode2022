@@ -2,8 +2,11 @@
 
 namespace AdventOfCode2022.Day2
 {
-    internal class Day2 : IChallengeDay
+    internal sealed class Day2 : IChallengeDay
     {
+        // Scores
+        private static readonly IDictionary<char, int> _scores = new Dictionary<char, int> { { 'A', 1 }, { 'B', 2 }, { 'C', 3 }, { 'X', 1 }, { 'Y', 2 }, { 'Z', 3 } };
+
         public int DayNumber => 2;
 
         public void RunChallengeOne()
@@ -20,10 +23,12 @@ namespace AdventOfCode2022.Day2
 
                 totalScore += myScore;
 
+                // Tie
                 if (opponentScore == myScore)
                 {
                     totalScore += 3;
                 }
+                // Win
                 else if (DecrementScore(myScore) == opponentScore)
                 {
                     totalScore += 6;
@@ -32,23 +37,6 @@ namespace AdventOfCode2022.Day2
 
             Console.WriteLine($"The total score would be {totalScore}.");
         }
-
-        private int DecrementScore(int score)
-        {
-            var temp = score - 1;
-
-            return temp == 0 ? 3 : temp;
-        }
-
-        private int IncrementScore(int score)
-        {
-            var temp = score + 1;
-
-            return temp == 4 ? 1 : temp;
-        }
-
-        // Scores
-        private readonly IDictionary<char, int> _scores = new Dictionary<char, int> { { 'A', 1 }, { 'B', 2 }, { 'C', 3 }, { 'X', 1 }, { 'Y', 2 }, { 'Z', 3 } };
 
         public void RunChallengeTwo()
         {
@@ -72,6 +60,7 @@ namespace AdventOfCode2022.Day2
                 {
                     totalScore += 6 + IncrementScore(opponentScore);
                 }
+                // Lose
                 else
                 {
                     totalScore += DecrementScore(opponentScore);
@@ -79,6 +68,20 @@ namespace AdventOfCode2022.Day2
             }
 
             Console.WriteLine($"The total score would be {totalScore}.");
+        }
+
+        private int DecrementScore(int score)
+        {
+            var temp = score - 1;
+
+            return temp == 0 ? 3 : temp;
+        }
+
+        private int IncrementScore(int score)
+        {
+            var temp = score + 1;
+
+            return temp == 4 ? 1 : temp;
         }
     }
 }
