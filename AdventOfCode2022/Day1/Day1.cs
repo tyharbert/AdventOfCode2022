@@ -57,7 +57,7 @@
                 }
             }
 
-            Console.WriteLine($"The sum of the 3 highest calorie totals is: {elfCalorieCountLeaderBoard.Sum()} ({String.Join(", ", elfCalorieCountLeaderBoard)}).");
+            Console.WriteLine($"The sum of the 3 highest calorie totals is: {elfCalorieCountLeaderBoard.Sum()}.");
         }
 
         private void InsertIntoLeaderboardAtIndex(int[] leaderBoard, int index, int value)
