@@ -49,19 +49,14 @@
                     throw new NotSupportedException("The input row must be '0-0,0-0'.");
                 }
 
-                // Partner 1 overlaps 2
+                // Any assignment overlap
                 if (pairValues[0] <= pairValues[3] && pairValues[1] >= pairValues[2])
-                {
-                    anyAssignemntOverlapCount++;
-                }
-                // Partner 2 overlaps 1
-                else if (pairValues[2] <= pairValues[1] && pairValues[3] >= pairValues[0])
                 {
                     anyAssignemntOverlapCount++;
                 }
             }
 
-            Console.WriteLine($"The number of pairs with a any assignment overlap is {anyAssignemntOverlapCount}.");
+            Console.WriteLine($"The number of pairs with any assignment overlap is {anyAssignemntOverlapCount}.");
         }
     }
 }
