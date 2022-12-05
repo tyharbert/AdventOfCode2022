@@ -1,9 +1,8 @@
-﻿using System.Reflection.Metadata;
-using System.Text;
+﻿using System.Text;
 
 namespace AdventOfCode2022.Day5
 {
-    internal class Day5 : IChallengeDay
+    internal sealed class Day5 : IChallengeDay
     {
         public int DayNumber => 5;
 
