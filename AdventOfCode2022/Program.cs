@@ -9,6 +9,6 @@ var implemenationTypes = AppDomain.CurrentDomain.GetAssemblies()
 implemenationTypes.Select(t => Activator.CreateInstance(t))
     .Cast<IChallengeDay>()
     .OrderBy(cd => cd.DayNumber)
-    .Where(cd => cd.DayNumber == 5)
+    .Where(cd => cd.DayNumber == 6)
     .ToList()
     .ForEach(cd => cd.PrintResults());
