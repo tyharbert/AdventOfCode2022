@@ -10,9 +10,17 @@
 
             ParseFileSystemStructure(root);
 
+            int minSize = 0;
             int maxSize = 100_000;
 
-            var runningTotal = CalculateTotalOfDirectoriesOfSizeRecursive(root, 0, maxSize);
+            int runningTotal = 0;
+            CalculateDirectorySizeRecursive(root, s =>
+            {
+                if (s >= minSize && s <= maxSize)
+                {
+                    runningTotal += s;
+                }
+            });
 
             Console.WriteLine($"The sum of all of the directories under {maxSize} is: {runningTotal}.");
         }
@@ -39,21 +47,6 @@
                 .FirstOrDefault();
 
             Console.WriteLine($"The min size to reach an unused size greater than {targetSizeToFree} is : {directorySizeToDelete}.");
-        }
-
-        private static int CalculateTotalOfDirectoriesOfSizeRecursive(MyDirectory currentDirectory, int minSize, int maxSize)
-        {
-            int runningTotal = 0;
-
-            CalculateDirectorySizeRecursive(currentDirectory, s =>
-            {
-                if (s >= minSize && s <= maxSize)
-                {
-                    runningTotal += s;
-                }
-            });
-
-            return runningTotal;
         }
 
         private static int CalculateDirectorySizeRecursive(MyDirectory currentDirectory, Action<int> onEachTotal)
